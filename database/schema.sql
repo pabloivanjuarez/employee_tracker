@@ -9,10 +9,10 @@ CREATE TABLE employee (
   last_name VARCHAR(30),
   role_id INT unsigned NOT NULL,
   INDEX role_index(role_id),
-  constraint f_key_role FOREIGN KEY (role_id) references roles(id) ON delete cascadE,
+  CONSTRAINT f_key_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
   manager_id int unsigned,
   INDEX manager_index(manager_id),
-  constraint f_key_manager_id FOREIGN KEY(manager_id) references employee(id)
+  CONSTRAINT f_key_manager_id FOREIGN KEY(manager_id) REFERENCES employee(id)
 );
 
 CREATE TABLE roles (
@@ -21,7 +21,7 @@ CREATE TABLE roles (
   SALARY DECIMAL NOT NULL,
   department_id INT unsigned,
   INDEX department_index(department_id),
-  constraint f_key_department foreign KEY (department_id) references department(id) on delete cascade 
+  CONSTRAINT f_key_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE 
 );
 
 CREATE TABLE department (
