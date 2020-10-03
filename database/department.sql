@@ -1,5 +1,4 @@
 USE empTracker;
 
-INSERT INTO department (names)
-VALUES ("Sales")
-, ("Devs"), ("Dancers")
+INSERT INTO department (branches)
+VALUES ("Sales"), ("Engineering"), ("Finace"), ("Legal");
