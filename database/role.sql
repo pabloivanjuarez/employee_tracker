@@ -15,5 +15,4 @@ VALUES
 ("Finace Lead", 10000, 3),
 ("Accountant", 80000, 3),
 ("HR Manager", 120000, 4),
-("HR Assistant", 80000, 4),
-
+("HR Assistant", 80000, 4);
