@@ -98,6 +98,15 @@ function view() {
         // restart CLI
         start()
       });
+    } else if (resp.viewQ === "roles") {
+      let query = "SELECT * FROM roles";
+      connection.query(query, function (err, res) {
+        if (err) throw err;
+        //roles query results
+        console.table(res);
+        //restart CLI
+        start()
+      });
     }
   })
 }
