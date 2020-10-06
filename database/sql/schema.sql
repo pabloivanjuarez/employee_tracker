@@ -5,7 +5,7 @@ USE empTracker;
 
 CREATE TABLE department (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  names VARCHAR(30)
+  branches VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE roles (
