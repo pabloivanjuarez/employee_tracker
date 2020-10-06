@@ -6,7 +6,7 @@
   "scripts": {
     "test": "none",
     "start": "node app.js",
-    "watch": "nodeman app.js"
+    "watch": "nodemon app.js"
   },
   "repository": {
     "type": "git",
