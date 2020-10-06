@@ -15,10 +15,11 @@ const connection = mysql.createConnection({
   password: "leboss321",
   database: "emptracker",
   host: "localhost",
-  port: 8080
+  port: 3306
 });
 
-connection.connect(function () {
+connection.connect(function (err) {
+  if (err) throw err;
   console.table(`
 ============================================================
 |                                                          |
@@ -45,47 +46,25 @@ const introQuestions = [{
   type: "list",
   message: "What would Thy like to do?",
   choices: [
-    "View all Employees",
-    "View all Employees by department",
-    "view all Employees by Manager",
-    "Add Employee",
-    "Add department",
-    "Add Role",
+    "View departments, employees, roles",
+    "Add department, employee, role",
     "Update Employee Role",
     "Exit"
   ]
 }];
 
 async function start() {
-  //list off employees and mangers
-  // getEmployee();
-  // getManager();
-  // getDepartment();
-  // getRole();
-
   //user input options
-  var answers = await inquirer.prompt(introQuestions);
-  switch (answers.action) {
-    case "View all Employees":
-      // viewAll();
+  var resp = await inquirer.prompt(introQuestions);
+  switch (resp.action) {
+    case "View departments, employees, roles":
+      view();
       break;
-    case "View all Employees by department":
-      // viewDepartment();
+    case "Add department, employee, role":
+      add();
       break;
-    case "view all Employees by Manager":
-      // viewManager();
-      break;
-    case "Add Employee":
-      // addEmployee();
-      break;
-    case "Add department":
-      // addDepartmet();
-      break;
-    case "Add Role":
-      // addRole();
-      break;
-    case "Update Employee Role":
-      // updateEmpRole();
+    case "update employee role":
+      updateEmpRole();
       break;
     case "Exit":
       connection.end();
