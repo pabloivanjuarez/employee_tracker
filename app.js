@@ -39,45 +39,9 @@ connection.connect(function () {
   start();
 });
 
-async function start() {
-  //list off employees and mangers
-  // getEmployee();
-  // getManager();
-  // getDepartment();
-  // getRole();
-
-  //user input options
-  var answers = await inquirer.prompt(introQuestions);
-  switch (answers.action) {
-    case "View all Employees":
-      viewAll();
-      break;
-    case "View all Employees by department":
-      viewDepartment();
-      break;
-    case "view all Employees by Manager":
-      viewManager();
-      break;
-    case "Add Employee":
-      addEmployee();
-      break;
-    case "Add department":
-      addDepartmet();
-      break;
-    case "Add Role":
-      addRole();
-      break;
-    case "Update Employee Role":
-      updateEmpRole();
-      break;
-    default:
-      connection.end();
-  }
-}
-
-//CLI Questions
+//CLI introductory Questions
 const introQuestions = [{
-  name: "intro",
+  name: "action",
   type: "list",
   message: "What would Thy like to do?",
   choices: [
@@ -89,5 +53,41 @@ const introQuestions = [{
     "Add Role",
     "Update Employee Role",
     "Exit"
-  ],
-}, ];
+  ]
+}];
+
+async function start() {
+  //list off employees and mangers
+  // getEmployee();
+  // getManager();
+  // getDepartment();
+  // getRole();
+
+  //user input options
+  var answers = await inquirer.prompt(introQuestions);
+  switch (answers.action) {
+    case "View all Employees":
+      // viewAll();
+      break;
+    case "View all Employees by department":
+      // viewDepartment();
+      break;
+    case "view all Employees by Manager":
+      // viewManager();
+      break;
+    case "Add Employee":
+      // addEmployee();
+      break;
+    case "Add department":
+      // addDepartmet();
+      break;
+    case "Add Role":
+      // addRole();
+      break;
+    case "Update Employee Role":
+      // updateEmpRole();
+      break;
+    case "Exit":
+      connection.end();
+  }
+}
