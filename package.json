@@ -1,0 +1,30 @@
+{
+  "name": "employee_tracker",
+  "version": "1.0.0",
+  "description": "A CLI content management system to manage your employees.",
+  "main": "app.js",
+  "scripts": {
+    "test": "none",
+    "start": "node app.js",
+    "watch": "nodeman app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabloivanjuarez/employee_tracker.git"
+  },
+  "keywords": [
+    "CLI",
+    "CMS"
+  ],
+  "author": "Pablito",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabloivanjuarez/employee_tracker/issues"
+  },
+  "homepage": "https://github.com/pabloivanjuarez/employee_tracker#readme"
+}
