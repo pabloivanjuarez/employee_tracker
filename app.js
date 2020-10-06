@@ -46,9 +46,9 @@ const introQuestions = [{
   type: "list",
   message: "What would Thy like to do?",
   choices: [
-    "View departments, employees, roles",
-    "Add department, employee, role",
-    "Update Employee Role",
+    "View departments, employees, roles?",
+    "Add department, employee, role?",
+    "Update employee role?",
     "Exit"
   ]
 }];
@@ -57,16 +57,38 @@ async function start() {
   //user input options
   var resp = await inquirer.prompt(introQuestions);
   switch (resp.action) {
-    case "View departments, employees, roles":
+    case "View departments, employees, roles?":
       view();
       break;
-    case "Add department, employee, role":
+    case "Add department, employee, role?":
       add();
       break;
-    case "update employee role":
+    case "Update employee role?":
       updateEmpRole();
       break;
     case "Exit":
       connection.end();
   }
+}
+
+//View departments, employees, roles 
+function view() {
+  inquirer.prompt([{
+    name: "viewQ",
+    type: "rawlist",
+    choices: ["departments", "employees", "roles"],
+    message: "Where would thy like to peer?"
+  }]).then(function (resp) {
+    // view departments
+    if (resp.viewQ === "departments") {
+      let query = "SELECT * FROM department";
+      connection.query(query, function (err, res) {
+        if (err) throw err;
+        //department results
+        console.table(res);
+        //restart CLI
+        start()
+      });
+    }
+  })
 }
