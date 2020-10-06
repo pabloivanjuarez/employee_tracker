@@ -11,36 +11,40 @@ const {
 } = require("process");
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  port: 8080,
   user: "ceo",
   password: "leboss321",
-  database: "empTracker"
+  database: "emptracker",
+  host: "localhost",
+  port: 8080
 });
 
-connection.connect(function (err) {
-  if (err) throw err;
+connection.connect(function () {
   console.table(`
-  ==============================================================
-===      ______                                              ===
-===     |   __/ _ __ ___  _ __                               === 
-===     |   _| |  _ '  _ \\  _\                              ===
-===     |  |___  | | | | | |_) |                             ===
-===     |______|_| |_| |_|  __/                              ===
-===                      |__|                                ===
-===                                                          ===
-===                                   TRACKER---->           ===
-================================================================
+============================================================
+|                                                          |
+|                                                          |
+|      ______                 _                            |
+|     |   __/ _ __ ___  _ __ | | ___  _   _  ___  ___      |
+|     |   _| |  _ '  _ \\  _ \\| |/ _ \\| | | |/ _ \\/ _ \\     |
+|     |  |___  | | | | | |_) | | (_) | |_| |  __/  __/     |
+|     |______|_| |_| |_|  __/|_|\\___/\\___, |\\___|\\___|     |
+|                      |__|           |___/                |
+|                                                          |
+|                                                          |
+|                   >>>----TRACKER---->                    |
+|                                                          |
+|                                                          |
+============================================================
   `)
   start();
 });
 
 async function start() {
   //list off employees and mangers
-  getEmployee();
-  getManager();
-  getDepartment();
-  getRole();
+  // getEmployee();
+  // getManager();
+  // getDepartment();
+  // getRole();
 
   //user input options
   var answers = await inquirer.prompt(introQuestions);
@@ -73,7 +77,7 @@ async function start() {
 
 //CLI Questions
 const introQuestions = [{
-  name: "action",
+  name: "intro",
   type: "list",
   message: "What would Thy like to do?",
   choices: [
