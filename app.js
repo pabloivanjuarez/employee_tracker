@@ -10,6 +10,10 @@ const {
   allowedNodeEnvironmentFlags
 } = require("process");
 
+//result queries
+let getD = "SELECT * FROM department"
+let getEmp = "SELECT * FROM employee"
+let getR = "SELECT * FROM roles"
 const connection = mysql.createConnection({
   user: "ceo",
   password: "leboss321",
@@ -76,13 +80,12 @@ function view() {
   inquirer.prompt([{
     name: "viewQ",
     type: "rawlist",
-    choices: ["departments", "employees", "roles"],
-    message: "Where would thy like to peer?"
+    message: "Where would thy like to peer?",
+    choices: ["departments", "employees", "roles"]
   }]).then(function (resp) {
     // view departments
     if (resp.viewQ === "departments") {
-      let query = "SELECT * FROM department";
-      connection.query(query, function (err, res) {
+      connection.query(getD, function (err, res) {
         if (err) throw err;
         //department query results
         console.table(res);
@@ -90,8 +93,7 @@ function view() {
         start()
       });
     } else if (resp.viewQ === "employees") {
-      let query = "SELECT * FROM employee";
-      connection.query(query, function (err, res) {
+      connection.query(getEmp, function (err, res) {
         if (err) throw err;
         //employee query results
         console.table(res);
@@ -99,8 +101,7 @@ function view() {
         start()
       });
     } else if (resp.viewQ === "roles") {
-      let query = "SELECT * FROM roles";
-      connection.query(query, function (err, res) {
+      connection.query(getR, function (err, res) {
         if (err) throw err;
         //roles query results
         console.table(res);
@@ -108,5 +109,37 @@ function view() {
         start()
       });
     }
+  })
+}
+
+// Add new department, employee, role
+function add() {
+  inquirer.prompt([{
+    name: "addQ",
+    type: "rawlist",
+    message: "Which table would thy like to add to?",
+    choices: ["Add new department", "Add new employee", "Add new role"]
+  }]).then(function (resp) {
+    if (resp.addQ === "Add new department") {
+      addDepartment();
+    } else if (resp.addQ === "Add new employee") {
+      addEmployee();
+    } else if (resp.addQ === "Add new role") {
+      addRole
+    }
+  });
+}
+
+function addDepartment() {
+  inquirer.prompt([{
+    name: "addD",
+    type: "input",
+    message: "What is thy department which thou wish to add?"
+  }]).then(function (resp) {
+    let query = "INSERT INTO department SET ?";
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+    });
+    connection.query(getD)
   })
 }
