@@ -84,9 +84,18 @@ function view() {
       let query = "SELECT * FROM department";
       connection.query(query, function (err, res) {
         if (err) throw err;
-        //department results
+        //department query results
         console.table(res);
         //restart CLI
+        start()
+      });
+    } else if (resp.viewQ === "employees") {
+      let query = "SELECT * FROM employee";
+      connection.query(query, function (err, res) {
+        if (err) throw err;
+        //employee query results
+        console.table(res);
+        // restart CLI
         start()
       });
     }
