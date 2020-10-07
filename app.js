@@ -9,6 +9,9 @@ const {
 const {
   allowedNodeEnvironmentFlags
 } = require("process");
+const {
+  restoreDefaultPrompts
+} = require("inquirer");
 
 //result queries
 let getD = "SELECT * FROM department"
@@ -147,6 +150,30 @@ function addDepartment() {
       if (err) throw err;
       console.table(res);
       // restart CLI
+      start()
+    });
+  });
+}
+
+//update employee roles
+function updateEmpRole() {
+  inquirer.prompt([{
+    name: "empNum",
+    type: "number",
+    message: "Please give employee id#"
+  }, {
+    name: "roleNum",
+    type: "number",
+    message: "Please give desired role id#"
+  }]).then(function (resp) {
+    let change = [
+      resp.empNum,
+      resp.roleNum
+    ]
+    let query = "UPDATE employee SET role_id = ? WHERE id = ?";
+    connection.query(query, change, function (err, res) {
+      if (err) throw err;
+      console.log("You have updated thy employee's role.");
       start()
     });
   });
