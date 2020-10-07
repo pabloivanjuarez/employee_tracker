@@ -136,10 +136,18 @@ function addDepartment() {
     type: "input",
     message: "What is thy department which thou wish to add?"
   }]).then(function (resp) {
-    let query = "INSERT INTO department SET ?";
-    connection.query(query, function (err, res) {
+    let query = "INSERT INTO department (branches) VALUES (?)";
+    console.log(resp);
+    connection.query(query, [resp.addD],
+      function (err, res) {
+        if (err) throw err;
+      });
+    //show new department table
+    connection.query(getD, function (err, res) {
       if (err) throw err;
+      console.table(res);
+      // restart CLI
+      start()
     });
-    connection.query(getD)
-  })
+  });
 }
