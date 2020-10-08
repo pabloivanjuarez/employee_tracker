@@ -189,6 +189,7 @@ function addEmployee() {
 
 //add new role
 function addRole() {
+  // new role questions
   inquirer.prompt([{
     name: "title",
     type: "input",
@@ -201,7 +202,25 @@ function addRole() {
     name: "department_id",
     type: "number",
     message: "What is thy department number?"
-  }])
+  }]).then(function (resp) {
+    let values = {
+      title: resp.title,
+      salary: resp.salary,
+      department_id: resp.department_id
+    };
+    //add data to DB @ roles
+    let query = "INSERT INTO roles SET ?";
+    connection.query(query, values, function (err, ress) {
+      if (err) throw err;
+    });
+    // show new roles table
+    connection.query("SELECT * FROM roles", function (err, res) {
+      if (err) throw err;
+      console.table(res);
+      // restart CLI
+      start()
+    });
+  });
 }
 
 //update employee roles
