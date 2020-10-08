@@ -1,17 +1,5 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const {
-  connect
-} = require("http2");
-const {
-  table
-} = require("console");
-const {
-  allowedNodeEnvironmentFlags
-} = require("process");
-const {
-  restoreDefaultPrompts
-} = require("inquirer");
 
 //result queries
 let getD = "SELECT * FROM department"
@@ -159,24 +147,41 @@ function addDepartment() {
 // Add employees:
 function addEmployee() {
   inquirer.prompt([{
-    name: "firstName",
-    type: "input",
-    message: "Name thee newest employee, please give thy first name"
-  }. {
-    name: "lastName",
-    type: "input",
-    message: "Please give thy last name"
-  }, {
-    name: "role_id",
-    type: "number",
-    message: "Please give thy employee's id #"
-  }, {
-    name: "manager_id",
-    type: "number",
-    message: "Please give thy employee's manager id #"
-  }]).then(function (resp) {
-    let query = ""
-  })
+      name: "firstName",
+      type: "input",
+      message: "Name thee newest employee, please give thy first name"
+    }, {
+      name: "lastName",
+      type: "input",
+      message: "Please give thy last name"
+    },
+    {
+      name: "role_id",
+      type: "number",
+      message: "Please give thy employee's id #"
+    },
+    {
+      name: "manager_id",
+      type: "number",
+      message: "Please give thy employee's manager id #"
+    }
+  ]).then(function (resp) {
+    let values = {
+      first_name: resp.firstName,
+      last_name: resp.lastName,
+      role_id: parseInt(resp.role_id),
+      manager_id: parseInt(resp.manager_id)
+    };
+    var query = "INSERT INTO employee SET ?";
+    connection.query(query, values, function (err, res) {
+      if (err) throw err;
+      console.log("Thy newest employee added!");
+    });
+    connection.query(getEmp, function (err, res) {
+      if (err) throw err;
+      console.table(res);
+    });
+  });
 }
 
 //update employee roles
