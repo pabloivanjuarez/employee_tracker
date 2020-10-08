@@ -187,6 +187,23 @@ function addEmployee() {
   });
 }
 
+//add new role
+function addRole() {
+  inquirer.prompt([{
+    name: "title",
+    type: "input",
+    message: "What shal ye calleth thy new Role?"
+  }, {
+    name: "salary",
+    type: "number",
+    message: "what is thy salary for said new role?"
+  }, {
+    name: "department_id",
+    type: "number",
+    message: "What is thy department number?"
+  }])
+}
+
 //update employee roles
 function updateEmpRole() {
   inquirer.prompt([{
