@@ -128,11 +128,12 @@ function add() {
     } else if (resp.addQ === "Add new employee") {
       addEmployee();
     } else if (resp.addQ === "Add new role") {
-      addRole
+      addRole();
     }
   });
 }
 
+// Add department:
 function addDepartment() {
   inquirer.prompt([{
     name: "addD",
@@ -153,6 +154,29 @@ function addDepartment() {
       start()
     });
   });
+}
+
+// Add employees:
+function addEmployee() {
+  inquirer.prompt([{
+    name: "firstName",
+    type: "input",
+    message: "Name thee newest employee, please give thy first name"
+  }. {
+    name: "lastName",
+    type: "input",
+    message: "Please give thy last name"
+  }, {
+    name: "role_id",
+    type: "number",
+    message: "Please give thy employee's id #"
+  }, {
+    name: "manager_id",
+    type: "number",
+    message: "Please give thy employee's manager id #"
+  }]).then(function (resp) {
+    let query = ""
+  })
 }
 
 //update employee roles
