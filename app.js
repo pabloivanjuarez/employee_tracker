@@ -147,6 +147,7 @@ function addDepartment() {
 // Add employees:
 function addEmployee() {
   inquirer.prompt([{
+      //user questions for adding new employee
       name: "firstName",
       type: "input",
       message: "Name thee newest employee, please give thy first name"
@@ -158,7 +159,7 @@ function addEmployee() {
     {
       name: "role_id",
       type: "number",
-      message: "Please give thy employee's id #"
+      message: "Please give thy employee's role #"
     },
     {
       name: "manager_id",
@@ -169,17 +170,19 @@ function addEmployee() {
     let values = {
       first_name: resp.firstName,
       last_name: resp.lastName,
-      role_id: parseInt(resp.role_id),
-      manager_id: parseInt(resp.manager_id)
+      role_id: resp.role_id,
+      manager_id: resp.manager_id
     };
     var query = "INSERT INTO employee SET ?";
     connection.query(query, values, function (err, res) {
       if (err) throw err;
       console.log("Thy newest employee added!");
     });
+    // Show employee table, now with new employee
     connection.query(getEmp, function (err, res) {
       if (err) throw err;
       console.table(res);
+      start() //restart CLI
     });
   });
 }
