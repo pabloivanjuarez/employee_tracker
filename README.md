@@ -29,9 +29,13 @@
 
 ---
   ## Usage
- 
-  Space created for your Text
 
+ ### How to use:
+ ![working_gif](public\img\week_12.gif)
+  #### 1) run:   
+  `node app.js`
+  #### 2) select what you'd like to do, follow instructions
+  #### 3) select exit at the end of usage, in order to quit the CLI
 
 ---  
   ## Contributing
