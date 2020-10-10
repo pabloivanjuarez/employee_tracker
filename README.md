@@ -14,8 +14,6 @@
 
   * [Usage](#usage)
 
-  * [Tests](#tests)
-
   * [Contributing](#contributing)
 
   * [Questions](#questions)
@@ -36,15 +34,9 @@
 
 
 ---  
-  ## Tests
-
-  ### ```npm run test```
-
-
----  
   ## Contributing
 
-  Pablito
+  [Pablito](https://github.com/pabloivanjuarez)
 
   
 ---  
